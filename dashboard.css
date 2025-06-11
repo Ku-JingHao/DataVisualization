@@ -1,0 +1,359 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    max-width: 100%;
+    background: #f5f5f5;
+}
+
+/* Left Sidebar Navigation */
+.sidebar {
+    width: 200px;
+    background: white;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+}
+
+.nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-btn {
+    padding: 12px 15px;
+    border: none;
+    background: #f8f9fa;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.nav-btn.active {
+    background: #2196f3;
+    color: white;
+}
+
+.nav-btn:hover {
+    background: #e3f2fd;
+}
+
+.nav-btn.active:hover {
+    background: #1976d2;
+}
+
+/* Filters Section */
+.filters-section {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 12px;
+    flex: 1;
+}
+
+.filters-section h4 {
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.filter-group {
+    margin-bottom: 10px;
+}
+
+.filter-btn, .region-btn, .customer-btn {
+    padding: 6px 10px;
+    margin: 2px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: #2196f3;
+    color: white;
+    border-color: #2196f3;
+}
+
+.region-btn, .customer-btn {
+    width: 100%;
+    text-align: left;
+    font-size: 12px;
+}
+
+.year-input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 12px;
+    overflow: hidden;
+}
+
+/* Header Section */
+.dashboard-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.dashboard-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.dashboard-header h2 {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* KPI Cards */
+.kpi-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.kpi-card {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.kpi-label {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.kpi-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2196f3;
+}
+
+/* Charts Grid */
+.charts-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    flex: 1;
+    min-height: 0;
+    grid-template-areas: 
+        "delivery-status country-risk"
+        "shipping-scatter shipping-mode"
+        "shipping-scatter heatmap";
+}
+
+.chart-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    position: relative; /* Added for better positioning */
+}
+
+.chart-container h4 {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 6px;
+    flex-shrink: 0;
+}
+
+.chart-container:nth-child(1) {
+    grid-area: delivery-status;
+}
+
+.chart-container:nth-child(2) {
+    grid-area: country-risk;
+}
+
+.chart-container:nth-child(3) {
+    grid-area: shipping-scatter;
+}
+
+.chart-container:nth-child(4) {
+    grid-area: shipping-mode;
+}
+
+.chart-container:nth-child(5) {
+    grid-area: heatmap;
+}
+
+.chart {
+    flex: 1;
+    min-height: 0;
+    overflow: visible;
+    width: 100%; /* FIXED: Ensure full width */
+    height: 100%; /* FIXED: Ensure full height */
+}
+
+.legend {
+    pointer-events: all;
+}
+
+.legend-item:hover {
+    opacity: 0.8;
+}
+
+.show-all-btn:hover rect {
+    fill: #e0e0e0;
+}
+
+
+/* Tooltip Styles */
+.tooltip {
+    position: absolute;
+    background: rgba(0,0,0,0.9);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    pointer-events: none;
+    font-size: 12px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* D3 Chart Specific Styles */
+.bar:hover {
+    opacity: 0.8;
+}
+
+.dot:hover {
+    stroke: #333;
+    stroke-width: 2px;
+}
+
+.cell:hover {
+    opacity: 0.8;
+    stroke: #333;
+    stroke-width: 2px;
+}
+
+.axis {
+    font-size: 10px;
+}
+
+.axis text {
+    fill: #666;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #ddd;
+    shape-rendering: crispEdges;
+}
+
+.diagonal-line {
+    stroke: #999;
+    stroke-dasharray: 3,3;
+    fill: none;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 180px;
+    }
+    
+    .kpi-section {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+    
+    .charts-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas: 
+            "delivery-status country-risk"
+            "shipping-scatter shipping-mode"
+            "heatmap heatmap";
+    }
+}
+
+@media (max-width: 900px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        height: auto;
+        padding: 10px;
+    }
+    
+    .nav-section {
+        flex-direction: row;
+        flex: 1;
+    }
+    
+    .filters-section {
+        flex: 1;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .charts-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "delivery-status"
+            "country-risk"
+            "shipping-scatter"
+            "shipping-mode"
+            "heatmap";
+    }
+}
