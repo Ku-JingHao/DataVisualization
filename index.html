@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataCo SMART SUPPLY CHAIN ANALYSIS - Logistics & Delivery Analysis</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <!-- Main Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="nav-section">
+                <button class="nav-btn" data-section="sales">Sales Analysis</button>
+                <button class="nav-btn active" data-section="logistics">Logistics & Delivery Analysis</button>
+            </div>
+            
+            <!-- Filters Section -->
+            <div class="filters-section">
+                <h4>Filters</h4>
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="pacific-asia">Pacific Asia</button>
+                    <button class="filter-btn" data-filter="europe">Europe</button>
+                    <button class="filter-btn" data-filter="usa">USA</button>
+                </div>
+                
+                <div class="filter-group">
+                    <button class="region-btn">Geographic Region</button>
+                </div>
+                
+                <div class="filter-group">
+                    <button class="customer-btn">Customer Segment</button>
+                </div>
+                
+                <div class="filter-group">
+                    <input type="text" placeholder="Year" class="year-input">
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header Section -->
+            <header class="dashboard-header">
+                <h1>DataCo SMART SUPPLY CHAIN ANALYSIS</h1>
+                <h2>Logistics & Delivery Analysis</h2>
+            </header>
+
+            <!-- KPI Cards Section -->
+            <section class="kpi-section">
+                <div class="kpi-card">
+                    <div class="kpi-label">On-Time Delivery Rate</div>
+                    <div class="kpi-value">88.8%</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Late Delivery Risk Rate</div>
+                    <div class="kpi-value">11.2%</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Average Delivery Days</div>
+                    <div class="kpi-value">6.2 days</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Orders</div>
+                    <div class="kpi-value">10,000</div>
+                </div>
+            </section>
+
+            <!-- Charts Grid Section -->
+            <section class="charts-grid">
+                <div class="chart-container">
+                    <h4>Delivery Status Over Time</h4>
+                    <div id="delivery-status-chart" class="chart"></div>
+                </div>
+                
+                <div class="chart-container">
+                    <h4>Top 10 Countries by Delivery Risk</h4>
+                    <div id="country-risk-chart" class="chart"></div>
+                </div>
+
+                <div class="chart-container">
+                    <h4>Scheduled vs. Actual Shipping Days</h4>
+                    <div id="shipping-scatter-chart" class="chart"></div>
+                </div>
+                
+                <div class="chart-container">
+                    <h4>Late Delivery Risk by Shipping Mode</h4>
+                    <div id="shipping-mode-chart" class="chart"></div>
+                </div>
+                
+                <div class="chart-container">
+                    <h4>Product Categories Risk Heatmap</h4>
+                    <div id="heatmap-chart" class="chart"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data_loader.js"></script>
+    <script src="kpi_cards.js"></script>
+    <script src="delivery_status_chart.js"></script>
+    <script src="country_risk_chart.js"></script>
+    <script src="shipping_scatter.js"></script>
+    <script src="shipping_mode_chart.js"></script>
+    <script src="heatmap_chart.js"></script>
+    <script src="filters.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
