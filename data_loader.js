@@ -4,7 +4,7 @@ let globalData = null;
 // Load and parse the CSV data
 async function loadData() {
     try {
-        const data = await d3.csv('cleaned_dataset_complete_orders.csv');
+        const data = await d3.csv('cleaned_dataset.csv');
         
         // Process and clean the data
         globalData = data.map(d => ({
@@ -27,12 +27,15 @@ async function loadData() {
             // Location information
             market: d['Market'],
             orderCountry: d['Order Country'],
+            orderState: d['Order State'],
+            orderCity: d['Order City'],
             customerCountry: d['Customer Country'],
             orderRegion: d['Order Region'],
             
             // Product information
-            categoryName: d['Category Name'],
-            productName: d['Product Name'],
+            departmentName: d['Department Name'] || 'Unknown Department',
+            categoryName: d['Category Name'] || 'Unknown Category',
+            productName: d['Product Name'] || 'Unknown Product',
             shippingMode: d['Shipping Mode'],
             
             // Customer information
@@ -40,6 +43,13 @@ async function loadData() {
         }));
         
         console.log('Data loaded successfully:', globalData.length, 'records');
+        console.log('Sample data:', globalData[0]); // Debug log
+        
+        // FIXED: Extract filter values immediately after loading data
+        if (typeof extractUniqueFilterValues === 'function') {
+            extractUniqueFilterValues();
+        }
+        
         return globalData;
         
     } catch (error) {
@@ -48,7 +58,7 @@ async function loadData() {
     }
 }
 
-// Process data for delivery status chart
+// KEEP OLD FUNCTION for compatibility
 function processDeliveryStatusData(data) {
     // Group data by month and delivery status
     const monthlyData = d3.rollup(data, 
