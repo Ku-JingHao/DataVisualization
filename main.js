@@ -4,9 +4,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize dashboard components
     initializeNavigation();
-    initializeKPICards();
     initializeCharts();
-    initializeFilters();
+    
+    // Initialize filter manager after charts are loaded with a small delay 
+    // to ensure data is fully processed
+    setTimeout(() => {
+        if (typeof initializeFilterManager === 'function') {
+            initializeFilterManager();
+        }
+    }, 300);
     
     console.log('Dashboard initialized successfully');
 });
@@ -27,7 +33,7 @@ function initializeNavigation() {
             const section = this.getAttribute('data-section');
             
             // Update header title based on section
-            const headerTitle = document.querySelector('.dashboard-header h2');
+            const headerTitle = document.querySelector('.header-left h2');
             if (section === 'sales') {
                 headerTitle.textContent = 'Sales Analysis';
                 // Here you would switch to sales charts
@@ -43,39 +49,54 @@ function initializeNavigation() {
 
 // Initialize all chart components
 async function initializeCharts() {
-    // Initialize data loader first
-    await initializeDataLoader();
-    
-    // Initialize each chart module
-    if (typeof initDeliveryStatusChart !== 'undefined') {
-        await initDeliveryStatusChart();
+    try {
+        // Initialize data loader first
+        await initializeDataLoader();
+        
+        // Initialize KPI cards after data is loaded
+        if (typeof initializeKPICards !== 'undefined') {
+            initializeKPICards();
+        }
+        
+        // Small delay to ensure DOM is ready
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Initialize each chart module
+        if (typeof initDeliveryStatusChart !== 'undefined') {
+            console.log('Initializing Delivery Status Chart...');
+            await initDeliveryStatusChart();
+        }
+        
+        if (typeof initCountryRiskChart !== 'undefined') {
+            console.log('Initializing Country Risk Chart...');
+            initCountryRiskChart();
+        }
+        
+        if (typeof initShippingScatterChart !== 'undefined') {
+            console.log('Initializing Shipping Scatter Chart...');
+            initShippingScatterChart();
+        }
+        
+        if (typeof initTreemapChart !== 'undefined') {
+            console.log('Initializing Treemap Chart...');
+            initTreemapChart();
+        }
+        
+        // Initialize cross-chart interactions after all charts are loaded
+        if (typeof initializeCrossChartInteractions !== 'undefined') {
+            console.log('Initializing Cross-Chart Interactions...');
+            initializeCrossChartInteractions();
+        }
+        
+        console.log('All charts initialized successfully');
+        
+    } catch (error) {
+        console.error('Error initializing charts:', error);
     }
-    
-    if (typeof initCountryRiskChart !== 'undefined') {
-        initCountryRiskChart();
-    }
-    
-    if (typeof initShippingScatterChart !== 'undefined') {
-        initShippingScatterChart();
-    }
-    
-    if (typeof initShippingModeChart !== 'undefined') {
-        initShippingModeChart();
-    }
-    
-    if (typeof initHeatmapChart !== 'undefined') {
-        initHeatmapChart();
-    }
-}
-
-// Initialize KPI Cards (placeholder)
-function initializeKPICards() {
-    console.log('KPI Cards initialized');
-    // Add KPI cards logic here
 }
 
 // Initialize Filters (placeholder)
 function initializeFilters() {
     console.log('Filters initialized');
-    // Add filters logic here
+    // Add filters logic here if needed
 }
