@@ -99,24 +99,6 @@ There are two main dashboards:
      - `http://localhost:8000/index.html`
      - `http://localhost:8000/delivery_main.html`
 
-### File Structure:
-  ├── cleaned_dataset_complete_orders_country_region.csv
-  ├── index.html
-  ├── delivery_main.html
-  ├── main.js
-  ├── script.js
-  ├── data_loader.js
-  ├── filter_manager.js
-  ├── kpi_cards.js
-  ├── delivery_status_chart.js
-  ├── country_risk_chart.js
-  ├── shipping_scatter.js
-  ├── treemap_chart.js
-  ├── cross_chart_interactions.js
-  ├── dashboard.css
-  ├── styles.css
-
-
 ## Usage
 - **Interact with Filters**: Use dropdowns and date pickers to filter data. All charts update in real time.
 - **Click on Chart Elements**: Filter all charts by the clicked dimension (e.g., country, segment, period).
