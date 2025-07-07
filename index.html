@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Sales Performance Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <div class="dashboard-header">
+        <div class="dashboard-title">Sales Performance Dashboard</div>
+        <div class="dashboard-nav">
+            <button class="nav-btn active" data-section="sales">Sales Analysis</button>
+            <button class="nav-btn" data-section="logistics" onclick="window.location.href='delivery_main.html'">Logistics & Delivery Analysis</button>
+        </div>
+    </div>
+
+    <div id="metrics">
+        <div class="metric-card sales">
+            <h3>Total Sales</h3>
+            <h2 id="metric-total-sales">--</h2>
+        </div>
+        <div class="metric-card profit">
+            <h3>Total Profit</h3>
+            <h2 id="metric-total-profit">--</h2>
+        </div>
+        <div class="metric-card orders">
+            <h3>Total Orders</h3>
+            <h2 id="metric-total-orders">--</h2>
+        </div>
+        <div class="metric-card margin">
+            <h3>Profit Margin</h3>
+            <h2 id="metric-profit-margin">--</h2>
+        </div>
+    </div>
+
+    <div id="filters">
+        <div class="filter-group">
+            <label for="filter-start-date">Start Date</label>
+            <input type="date" id="filter-start-date" min="" max="" />
+        </div>
+        <div class="filter-group">
+            <label for="filter-end-date">End Date</label>
+            <input type="date" id="filter-end-date" min="" max="" />
+        </div>
+        <div class="filter-group">
+            <label for="filter-category">Category</label>
+            <select id="filter-category">
+                <option>All</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="filter-segment">Segment</label>
+            <select id="filter-segment">
+                <option>All</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="filter-region">Region</label>
+            <select id="filter-region">
+                <option>All</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="filter-country">Country</label>
+            <select id="filter-country">
+                <option>All</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" id="clear-filters">Clear Filters</button>
+        </div>
+    </div>
+
+    <div class="chart-wrapper">
+        <div class="charts-grid-row">
+            <div class="chart-card" id="chart-category-by-sales">
+                <div class="chart-header">
+                    <h3>Top 5 Categories by Sales</h3>
+                </div>
+                <div class="chart-container"><svg></svg>
+                    <div class="tooltip"></div>
+                </div>
+            </div>
+            <div class="chart-card" id="chart-sales-trend" style="grid-column: span 2;">
+                <div class="chart-header">
+                    <h3>Sales Over Time</h3>
+                </div>
+                <div class="chart-container"></div>
+            </div>
+        </div>
+        <div class="charts-grid-row">
+            <div class="chart-card" id="chart-segment-country">
+                <div class="chart-header">
+                    <h3>Sales by Country & Segment</h3>
+                </div>
+                <div class="chart-container"></div>
+            </div>
+            <div class="chart-card" id="chart-region-treemap">
+                <div class="chart-header">
+                    <h3>Region Sales (Treemap)</h3>
+                </div>
+                <div class="chart-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
