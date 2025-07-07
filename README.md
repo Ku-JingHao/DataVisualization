@@ -100,7 +100,6 @@ There are two main dashboards:
      - `http://localhost:8000/delivery_main.html`
 
 ### File Structure:
-AAA/
   ├── cleaned_dataset_complete_orders_country_region.csv
   ├── index.html
   ├── delivery_main.html
