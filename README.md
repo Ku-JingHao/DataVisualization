@@ -1,4 +1,4 @@
-# Data Visualization Dashboard Suite
+# DataCo Supply Chain Intelligence Dashboard
 
 ## Overview
 This project provides an interactive data visualization suite for analyzing sales, logistics, and delivery performance using a rich set of D3.js-powered dashboards. It is designed for business analysts, operations managers, and anyone interested in exploring order, shipping, and delivery data at multiple granularities.
